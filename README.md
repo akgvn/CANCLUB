@@ -16,6 +16,15 @@ It is an easy-to-use, web-based application through which club members can propo
   - [ ] "presidents" table (or just a boolean in "users"?)
   - [x] "departments" table (if added, edit "users" to add department!)
 - [ ] Registration Functionality
+  - [x] First Name
+  - [x] Last Name
+  - [ ] Birth Date
+  - [ ] Email
+  - [ ] Department
+    - [ ] List departments using PHP (foreach) / MySQL
+  - [x] Username
+  - [x] Password
+  - [ ] Photo
 - [ ] Login Page
 - [ ] Main Activity "Wall" page
 - [ ] Propose Activity
