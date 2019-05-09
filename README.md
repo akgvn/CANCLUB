@@ -9,10 +9,12 @@ It is an easy-to-use, web-based application through which club members can propo
 
 - [ ] Design Initial Database
   - [x] "users" table
+    - [x] edit to add department_id column
   - [ ] "activities" table
   - [ ] "comments" table
   - [ ] "votes" table
   - [ ] "presidents" table (or just a boolean in "users"?)
+  - [x] "departments" table (if added, edit "users" to add department!)
 - [ ] Registration Functionality
 - [ ] Login Page
 - [ ] Main Activity "Wall" page
@@ -20,6 +22,6 @@ It is an easy-to-use, web-based application through which club members can propo
 - [ ] Individual Activity page for each activity with voting functionality
 - [ ] Comment Function for Voting Page
 - [ ] Club member list page for Club Presidents with option to delete members.
-- [ ] Trending Activity Prposals Page
+- [ ] Trending Activity Proposals Page
 - [ ] Profile Page for each user so that they can update their own info.
 - [ ] Write Project Report
