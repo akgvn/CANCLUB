@@ -8,6 +8,11 @@ It is an easy-to-use, web-based application through which club members can propo
 ## TODO
 
 - [ ] Design Initial Database
+  - [x] "users" table
+  - [ ] "activities" table
+  - [ ] "comments" table
+  - [ ] "votes" table
+  - [ ] "presidents" table (or just a boolean in "users"?)
 - [ ] Registration Functionality
 - [ ] Login Page
 - [ ] Main Activity "Wall" page
