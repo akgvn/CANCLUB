@@ -1,49 +1,34 @@
 <?php
 	session_start();
 
-	if (isset($_SESSION["username"])) {
-		header("Location: listallusers.php");
+	require_once "db.php";
+	require_once "User.php";
+
+	if (isset($_SESSION["user"])) {
+		header("Location: index.php");
 	}
 
 	if (array_key_exists("user", $_POST) && array_key_exists("pass", $_POST)) {
 		print_r($_POST); // Print everthing that's posted.
 		echo "<br>";
 
-		require "db_connect.php";
+		$user_data = new User;
 
-		$username = $_POST["user"];
-		$password = $_POST["pass"];
+		$user_data->uname = $_POST["user"];
+		$user_data->pass = $_POST["pass"];
 
-		$query_str = "select * from users where username = \"" . $username . "\" and password = \"" . $password . "\"";//. "\" LIMIT 1";
+		$result = $db->userLogin($user_data);
 		
-		print $query_str;
-		echo "<br>";
-		
-		$result = $db->query($query_str); // Querying db for the user.
-		
-		print_r($result);
-		echo "<br>";
 
-		$n_rows = $result->num_rows; // Number of rows with that username & password, should be 1.
-		
-		echo $n_rows;
-		echo "<br>";
-
-		if ($n_rows == 1) {
+		if ($result) {
 			echo "Login successful.";
 
-			$row = $result->fetch_assoc(); // Fetch the entire row.
-
-			$_SESSION["user_id"] = $row["id"]; // Gets the id column of the row.
-			$_SESSION["username"] = $username;
-			$_SESSION["reviewer"] = $row["is_reviewer"];
-
-			header('Location: listallusers.php') ;
+			header('Location: index.php') ;
 		}
 		else {
 			echo "Password or username mismatch.";
 		}
-	}		
+	}
 	
 ?>
 

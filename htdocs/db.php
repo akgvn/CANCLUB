@@ -42,12 +42,14 @@ class DB_Middleman
 
     public function registerUser($user_data)
     {
+        // TODO Look for existing user!
+
         try
         {
             // $new_password = password_hash($pass, PASSWORD_DEFAULT);
 
             $stmt = $this->db_conn->prepare("INSERT INTO users(email, username, password, fname, lname, birthdate, dept_id)
-                                          VALUES(:ue, :un, :up, :uf, :ul, :ub, :ud)");
+            VALUES(:ue, :un, :up, :uf, :ul, :ub, :ud)");
 
             $stmt->bindparam(":ue", $user_data->email);
             $stmt->bindparam(":un", $user_data->uname);
@@ -66,9 +68,58 @@ class DB_Middleman
         }
     }
 
-    public function userExists($user_data)
+    public function userLogin($user_data)
     {
+        try
+        {
+            $stmt = $this->db_conn->prepare("SELECT id, password FROM users WHERE username=:un");
 
+            $stmt->bindparam(":un", $user_data->uname);
+            $stmt->execute();
+
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($stmt->rowCount() == 1) {
+                if ($userRow['password'] == $user_data->pass) { /* password_verify($upass, $userRow['password']) */
+                    $_SESSION['user'] = $this->getUserData($userRow['id']);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return false;
+    }
+
+    public function getUserData($user_id)
+    {
+        try
+        {
+            $stmt = $this->db_conn->prepare("SELECT id, username, fname, lname, birthdate, dept_id, email
+            FROM users WHERE id=:uid");
+
+            $stmt->bindparam(":uid", $user_id);
+            $stmt->execute();
+
+            $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $user_data = new User;
+
+            $user_data->uid = $userRow["id"];
+            $user_data->uname = $userRow["username"];
+            $user_data->fname = $userRow["fname"];
+            $user_data->lname = $userRow["lname"];
+            $user_data->pass = null;
+            $user_data->birth = $userRow["birthdate"];
+            $user_data->dept = $userRow["dept_id"];
+            $user_data->email = $userRow["email"];
+
+            return $user_data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return false;
     }
 
     public function proposeActivity($user_data, $activity_data)

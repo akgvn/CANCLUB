@@ -25,7 +25,7 @@ It is an easy-to-use, web-based application through which club members can propo
   - [x] Username
   - [x] Password
   - [ ] Photo
-- [ ] Login Page
+- [x] Login Page
 - [ ] Main Activity "Wall" page
 - [ ] Propose Activity
 - [ ] Individual Activity page for each activity with voting functionality
