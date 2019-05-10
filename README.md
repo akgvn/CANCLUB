@@ -18,10 +18,10 @@ It is an easy-to-use, web-based application through which club members can propo
 - [ ] Registration Functionality
   - [x] First Name
   - [x] Last Name
-  - [ ] Birth Date
-  - [ ] Email
-  - [ ] Department
-    - [ ] List departments using PHP (foreach) / MySQL
+  - [x] Birth Date
+  - [x] Email
+  - [x] Department
+    - [x] List departments using PHP (foreach) / MySQL
   - [x] Username
   - [x] Password
   - [ ] Photo
