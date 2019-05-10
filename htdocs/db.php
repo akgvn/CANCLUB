@@ -96,7 +96,7 @@ class DB_Middleman
     {
         try
         {
-            $stmt = $this->db_conn->prepare("SELECT id, username, fname, lname, birthdate, dept_id, email
+            $stmt = $this->db_conn->prepare("SELECT id, username, fname, lname, birthdate, dept_id, email, has_president_rights
             FROM users WHERE id=:uid");
 
             $stmt->bindparam(":uid", $user_id);
@@ -114,6 +114,7 @@ class DB_Middleman
             $user_data->birth = $userRow["birthdate"];
             $user_data->dept = $userRow["dept_id"];
             $user_data->email = $userRow["email"];
+            $user_data->president = $userRow["has_president_rights"];
 
             return $user_data;
         } catch (PDOException $e) {
@@ -122,12 +123,30 @@ class DB_Middleman
         return false;
     }
 
-    public function proposeActivity($user_data, $activity_data)
+    public function proposeActivity($activity_data)
     {
+        try
+        {
+            $stmt = $this->db_conn->prepare("INSERT INTO users(activity_id, activity_title, activity_info, 
+            activity_type, proposal_time, proposed_by) VALUES(:id, :tt, :text, :type, :time, :by)");
 
+            $stmt->bindparam(":id", $activity_data->activity_id);
+            $stmt->bindparam(":tt", $activity_data->activity_title);
+            $stmt->bindparam(":text", $activity_data->activity_info);
+            $stmt->bindparam(":time", $activity_data->proposal_time);
+            $stmt->bindparam(":by", $activity_data->proposed_by);
+            $stmt->bindparam(":type", $activity_data->activity_type);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
-    public function voteActivity($user_data, $vote_data)
+    public function voteActivity($vote_data)
     {
 
     }
@@ -153,3 +172,5 @@ class DB_Middleman
 }
 
 $db = new DB_Middleman();
+
+?>

@@ -9,5 +9,7 @@
 > - Data flow diagram
 > - Explain how does your system work here.
 
+The system is created using PHP and MySQL.
+
 ## Project Results
 > (Screenshots and their explanations)

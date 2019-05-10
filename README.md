@@ -10,12 +10,14 @@ It is an easy-to-use, web-based application through which club members can propo
 - [ ] Design Initial Database
   - [x] "users" table
     - [x] edit to add department_id column
-  - [ ] "activities" table
-  - [ ] "comments" table
-  - [ ] "votes" table
-  - [ ] "presidents" table (or just a boolean in "users"?)
+    - [x] edit to add is_prez column
+  - [x] "activities" table
+  - [x] "comments" table
+  - [x] "votes" table
   - [x] "departments" table (if added, edit "users" to add department!)
-- [ ] Registration Functionality
+  - [ ] Design the relations
+    - [ ] Make sure which is Foreign key / Referenced key
+- [x] Registration Functionality
   - [x] First Name
   - [x] Last Name
   - [x] Birth Date
@@ -24,7 +26,7 @@ It is an easy-to-use, web-based application through which club members can propo
     - [x] List departments using PHP (foreach) / MySQL
   - [x] Username
   - [x] Password
-  - [ ] Photo
+- [ ] Add Photo to Register page
 - [x] Login Page
 - [ ] Main Activity "Wall" page
 - [ ] Propose Activity

@@ -11,7 +11,7 @@ First of all, club members should register into the system. During registration 
 - Photo
 
 After the registration process, the club member can do the following operations by using the CANCLUB:
-* A login system: Only registered club members can have an access to the CANCLUB.
+* ~~A login system: Only registered club members can have an access to the CANCLUB.~~
 * Propose new activity to be voted by club members: A registered club member can propose a new activity by specifying the type of activity (e.g. seminar, technical visit, social responsibility project, club project, etc.), and the description of the activity.
 * Confirm/Deny activity proposals: The users can approve or disapprove the activity
 proposals of the other club members. All registered club members can like or dislike the activity proposal. The activity proposal will be open for voting for only fifteen days. In addition, the users can write comments on each activity proposal.

@@ -10,6 +10,7 @@ class User
     public $pass;
     public $dept;
     public $birth;
+    public $president;
 
     public function update()
     {
