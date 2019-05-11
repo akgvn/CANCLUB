@@ -193,7 +193,7 @@ class DB_Middleman
 
             $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            return $depts;
+            return $activities;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

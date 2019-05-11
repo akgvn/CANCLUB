@@ -1,15 +1,6 @@
 <?php
 
-require_once "db.php";
-require_once "User.php";
-require_once "Activity.php";
-
-session_start();
-
-// If a user is not already logged in, redirect to login.php.
-if (!isset($_SESSION["user"])) {
-    header("Location: login.php");
-}
+require_once "header.php";
 
 if (isset($_POST["title"])) {
     $a_data = new Activity;
@@ -34,20 +25,17 @@ if (isset($_POST["title"])) {
 
 ?>
 
-<html>
 
-<body>
-    <form method="POST">
+<form method="POST" class="form-group">
 
-            <label> Activity Title:
-                <input required type="text" id="title" name="title" size="30" maxlength="63">
-            </label><br><br>
-            <label> Your Proposal:
-                <textarea required id="info" name="info"></textarea>
-            </label><br><br>
-            <label> What type of Activity is your proposal?
-                <select name="type">
-
+    <label> Activity Title:
+        <input required type="text" id="title" name="title" size="30" maxlength="63" class="form-control">
+    </label><br><br>
+    <label> Your Proposal:
+        <textarea required id="info" name="info" class="form-control"></textarea>
+    </label><br><br>
+    <label> What type of Activity is your proposal?
+        <select name="type" class="form-control">
 <?php
 
 // List all Activity types
@@ -63,7 +51,6 @@ foreach ($types as $t) {
 
                 </select>
             </label> <br> <br>
-        </fieldset>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" class="btn btn-primary" />
     </form>
 </body>
