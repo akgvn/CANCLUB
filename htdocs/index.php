@@ -5,7 +5,11 @@ session_start();
 require_once "User.php";
 require_once "db.php";
 
-print_r($_SESSION["user"]);
+if(!isset($_SESSION["user"])) {
+    header("Location: login.php");
+} else {
+    header("Location: stream.php");
+}
 
 echo "<h1> HELLO WORLD! </h1>";
 ?>

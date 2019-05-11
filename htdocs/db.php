@@ -48,8 +48,8 @@ class DB_Middleman
         {
             // $new_password = password_hash($pass, PASSWORD_DEFAULT);
 
-            $stmt = $this->db_conn->prepare("INSERT INTO users(email, username, password, fname, lname, birthdate, dept_id)
-            VALUES(:ue, :un, :up, :uf, :ul, :ub, :ud)");
+            $stmt = $this->db_conn->prepare("INSERT INTO users(email, username, password, fname, lname, birthdate, dept_id, has_president_rights)
+            VALUES(:ue, :un, :up, :uf, :ul, :ub, :ud, :prez)");
 
             $stmt->bindparam(":ue", $user_data->email);
             $stmt->bindparam(":un", $user_data->uname);
@@ -58,6 +58,7 @@ class DB_Middleman
             $stmt->bindparam(":up", $user_data->pass);
             $stmt->bindparam(":ud", $user_data->dept);
             $stmt->bindparam(":ub", $user_data->birth);
+            $stmt->bindparam(":prez", $user_data->president);
 
             $stmt->execute();
 
@@ -127,10 +128,9 @@ class DB_Middleman
     {
         try
         {
-            $stmt = $this->db_conn->prepare("INSERT INTO users(activity_id, activity_title, activity_info, 
-            activity_type, proposal_time, proposed_by) VALUES(:id, :tt, :text, :type, :time, :by)");
+            $stmt = $this->db_conn->prepare("INSERT INTO activities(activity_title, activity_info, 
+            activity_type, proposal_time, proposed_by) VALUES(:tt, :text, :type, :time, :by)");
 
-            $stmt->bindparam(":id", $activity_data->activity_id);
             $stmt->bindparam(":tt", $activity_data->activity_title);
             $stmt->bindparam(":text", $activity_data->activity_info);
             $stmt->bindparam(":time", $activity_data->proposal_time);
@@ -163,6 +163,35 @@ class DB_Middleman
             $stmt->execute();
 
             $depts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $depts;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getActivityTypes()
+    {
+        try {
+            $stmt = $this->db_conn->prepare("SELECT type_id, type_name FROM activity_types");
+            $stmt->execute();
+
+            $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $types;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getActivitiesInOrder()
+    {
+        try {
+            $stmt = $this->db_conn->prepare("SELECT activity_id, activity_title, activity_info, activity_type, proposal_time, proposed_by
+            FROM activities ORDER BY proposal_time DESC");
+            $stmt->execute();
+
+            $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $depts;
         } catch (PDOException $e) {

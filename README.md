@@ -7,7 +7,7 @@ It is an easy-to-use, web-based application through which club members can propo
 
 ## TODO
 
-- [ ] Design Initial Database
+- [x] Design Initial Database
   - [x] "users" table
     - [x] edit to add department_id column
     - [x] edit to add is_prez column
@@ -15,8 +15,8 @@ It is an easy-to-use, web-based application through which club members can propo
   - [x] "comments" table
   - [x] "votes" table
   - [x] "departments" table (if added, edit "users" to add department!)
-  - [ ] Design the relations
-    - [ ] Make sure which is Foreign key / Referenced key
+  - [x] Design the relations
+    - [x] Make sure which is Foreign key (user_ id in activities) / Referenced key (user_ id in users)
 - [x] Registration Functionality
   - [x] First Name
   - [x] Last Name
@@ -29,7 +29,7 @@ It is an easy-to-use, web-based application through which club members can propo
 - [ ] Add Photo to Register page
 - [x] Login Page
 - [ ] Main Activity "Wall" page
-- [ ] Propose Activity
+- [x] Propose Activity
 - [ ] Individual Activity page for each activity with voting functionality
 - [ ] Comment Function for Voting Page
 - [ ] Club member list page for Club Presidents with option to delete members.

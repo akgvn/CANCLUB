@@ -10,7 +10,7 @@ class User
     public $pass;
     public $dept;
     public $birth;
-    public $president;
+    public $president = 0;
 
     public function update()
     {
