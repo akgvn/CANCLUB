@@ -36,10 +36,10 @@ echo "
     <li class='list-group-item'><strong>Department:</strong> $deptn </li>
   </ul>
   <div class='card-body'>
-    <form method='POST' action='register.php'>
-    <input hidden id='uid' value='$user->uid'/>
-    <input hidden id='change' value=1 />
-    <button type='button' class='btn btn-outline-danger'>Edit Info</button>
+    <form method='POST' action='edituser.php'>
+      <input hidden id='uid' name='uid' value='$user->uid'/>
+      <input hidden id='change' value=1 />
+      <button type='submit' class='btn btn-outline-danger'>Edit Info</button>
     </form>
   </div>
 </div>

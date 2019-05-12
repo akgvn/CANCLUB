@@ -18,4 +18,4 @@ After the registration process, the club member can do the following operations 
 * See Trend Activity proposals: The users can see the most popular 5 activity proposals. The
 popularity of an activity offer can be determined as (number of approves - number of
 disapproves).
-* Update Personal Information: The users can update his/her personal information.
+* ~~Update Personal Information: The users can update his/her personal information.~~

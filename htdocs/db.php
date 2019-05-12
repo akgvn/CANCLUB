@@ -69,6 +69,33 @@ class DB_Middleman
         }
     }
 
+    public function updateUser($user_data)
+    {
+        try
+        {
+            // $new_password = password_hash($pass, PASSWORD_DEFAULT);
+
+            $stmt = $this->db_conn->prepare("UPDATE users
+            SET email = :ue, username = :un, password = :up, fname = :uf, lname = :ul, birthdate = :ub, dept_id = :ud
+            WHERE id=$user_data->uid;");
+
+            $stmt->bindparam(":ue", $user_data->email);
+            $stmt->bindparam(":un", $user_data->uname);
+            $stmt->bindparam(":uf", $user_data->fname);
+            $stmt->bindparam(":ul", $user_data->lname);
+            $stmt->bindparam(":up", $user_data->pass);
+            $stmt->bindparam(":ud", $user_data->dept);
+            $stmt->bindparam(":ub", $user_data->birth);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
     public function userLogin($user_data)
     {
         try
@@ -128,7 +155,7 @@ class DB_Middleman
     {
         try
         {
-            $stmt = $this->db_conn->prepare("INSERT INTO activities(activity_title, activity_info, 
+            $stmt = $this->db_conn->prepare("INSERT INTO activities(activity_title, activity_info,
             activity_type, proposal_time, proposed_by) VALUES(:tt, :text, :type, :time, :by)");
 
             $stmt->bindparam(":tt", $activity_data->activity_title);
@@ -247,5 +274,3 @@ class DB_Middleman
 }
 
 $db = new DB_Middleman();
-
-?>
