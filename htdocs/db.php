@@ -239,15 +239,52 @@ class DB_Middleman
         }
     }
 
-    public function newComment($user_data, $activity_data, $comment_data)
+    public function newComment($comment_data)
     {
-        // TODO
+        try
+        {
+            $stmt = $this->db_conn->prepare("INSERT INTO comments(commenter_id, activity_id, comment_text, comment_date) 
+            VALUES(:cmtr, :aid, :text, :time)");
+
+            $stmt->bindparam(":cmtr", $comment_data->commenter_id);
+            $stmt->bindparam(":aid", $comment_data->activity_id);
+            $stmt->bindparam(":text", $comment_data->comment_text);
+            $stmt->bindparam(":time", $comment_data->comment_date);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getComments($activity_id) 
+    {
+        try
+        {
+            $stmt = $this->db_conn->prepare("SELECT comment_text, commenter_id, comment_date 
+            FROM comments 
+            WHERE activity_id=$activity_id
+            ORDER BY comment_date DESC");
+
+            $stmt->execute();
+
+            $cmmts = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $cmmts;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public function getAllDepartments()
     {
         try {
-            $stmt = $this->db_conn->prepare("SELECT dept_id, dept_name FROM departments");
+            $stmt = $this->db_conn->prepare("SELECT dept_id, dept_name 
+            FROM departments");
             $stmt->execute();
 
             $depts = $stmt->fetchAll(PDO::FETCH_ASSOC);

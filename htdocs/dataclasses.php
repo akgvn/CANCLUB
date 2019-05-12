@@ -63,3 +63,12 @@ function arrToAct($actArray)
 
     return $act;
 }
+
+class Comment
+{
+    public $comment_id;
+    public $commenter_id;
+    public $activity_id;
+    public $comment_text;
+    public $comment_date;
+}

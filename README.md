@@ -34,9 +34,9 @@ It is an easy-to-use, web-based application through which club members can propo
 - [ ] Individual Activity page for each activity with voting functionality
   - [x] Individual page
   - [x] Voting
-  - [ ] Comment Function for Voting Page
-    - [ ] Add comment
-    - [ ] List comments
+  - [x] Comment Function for Voting Page
+    - [x] Add comment
+    - [x] List comments
 - [X] Club member list page for Club Presidents with option to delete members.
   - [x] The list
   - [X] Delete function
