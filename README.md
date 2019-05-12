@@ -33,10 +33,10 @@ It is an easy-to-use, web-based application through which club members can propo
 - [x] Propose Activity
 - [ ] Individual Activity page for each activity with voting functionality
   - [x] Individual page
-  - [ ] Voting
+  - [x] Voting
   - [ ] Comment Function for Voting Page
 - [ ] Club member list page for Club Presidents with option to delete members.
-- [ ] Trending Activity Proposals Page
+- [x] Trending Activity Proposals Page
 - [x] Profile Page for each user so that they can update their own info.
   - [x] Profile page
   - [x] Update info

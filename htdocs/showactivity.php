@@ -2,16 +2,31 @@
 
 require_once "header.php";
 
-if(!isset($_GET["id"])) {
+if (!isset($_GET["id"])) {
     echo "<h3>No activity id given!</h3>";
     exit;
 }
+
+
 
 $act = $db->getActivityByID($_GET["id"]);
 $act = arrToAct($act);
 $proposer = $db->getUserData($act->proposed_by);
 $type = $act->activity_type;
 $type = $db->getActType($type);
+
+$vote = new Vote;
+$vote->activity_id = $_GET["id"];
+$vote->voter_id = $current_user->uid;
+
+$voted = $db->isVoted($vote);
+
+if (isset($_GET["value"]) && !$voted) {
+  $vote->value = $_GET["value"];
+  if($db->voteActivity($vote)) {
+    header("Refresh:0");
+  }
+}
 
 echo "
 <div class='card text-center'>
@@ -21,20 +36,18 @@ echo "
   <div class='card-body'>
     <h5 class='card-title'>$act->activity_title</h5>
     <p class='card-text'>$act->activity_info</p>
-    
+
   </div>
   <ul class='list-group list-group-flush'>
   <li class='list-group-item'>
 ";
 
-// FIXME IF NOT VOTED
-echo "<a href='#' class='btn btn-primary'>Approve</a>
-    <a href='#' class='btn btn-primary'>Disapprove</a> ";
-
-// FIXME IF VOTED
-
-echo "You've voted this proposal. Votes: $act->vote_count";
-
+if (!$voted) {
+    echo "<a href='showactivity.php?id=$act->activity_id&value=1' class='btn btn-primary'>Approve</a>
+<a href='showactivity.php?id=$act->activity_id&value=-1' class='btn btn-primary'>Disapprove</a> ";
+} else {
+    echo "You've voted this proposal. Votes: $act->vote_count";
+}
 echo "
   </li>
   <li class='list-group-item'>
@@ -48,5 +61,3 @@ echo "
 ";
 
 // TODO ADD COMMENTS!
-
-?>

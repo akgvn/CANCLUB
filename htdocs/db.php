@@ -175,12 +175,59 @@ class DB_Middleman
 
     public function voteActivity($vote_data)
     {
+        try
+        {
+            $stmt = $this->db_conn->prepare("INSERT INTO votes(value, activity_id, voter_id) VALUES(:val, :act, :uid)");
 
+            // $stmt->bindparam(":id", $vote_data->vote_id);
+            $stmt->bindparam(":val", $vote_data->value);
+            $stmt->bindparam(":act", $vote_data->activity_id);
+            $stmt->bindparam(":uid", $vote_data->voter_id);
+
+            $stmt->execute();
+
+            $stmt = $this->db_conn->prepare("SELECT vote_count FROM activities WHERE activity_id=$vote_data->activity_id");
+            $stmt->execute();
+
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $row = $row["vote_count"];
+            $row += $vote_data->value;
+
+            $stmt = $this->db_conn->prepare("UPDATE activities SET vote_count=$row WHERE activity_id=$vote_data->activity_id");
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function isVoted($vote_data)
+    {
+        try
+        {
+            $stmt = $this->db_conn->prepare("SELECT vote_id, value FROM votes WHERE activity_id = :aid AND voter_id = :vid");
+
+            $stmt->bindparam(":aid", $vote_data->activity_id);
+            $stmt->bindparam(":vid", $vote_data->voter_id);
+
+            $stmt->execute();
+
+            $votes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if(count($votes) > 0) {
+                return true;
+            }
+            return false;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 
     public function newComment($user_data, $activity_data, $comment_data)
     {
-
+        // TODO
     }
 
     public function getAllDepartments()

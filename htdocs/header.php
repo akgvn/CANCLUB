@@ -53,13 +53,13 @@ body {
     <div class="d-flex justify-content-start" id="navbarNav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="stream.php">Activities</a>
+            <a class="nav-link text-light" href="stream.php">Activities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="stream.php?trending=1">Trend Activities</a>
+            <a class="nav-link text-light" href="stream.php?trending=1">Trend Activities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="proposeactivity.php">Propose Activity</a>
+            <a class="nav-link text-light" href="proposeactivity.php">Propose Activity</a>
           </li>
           <?php
 
