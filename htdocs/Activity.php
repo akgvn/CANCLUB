@@ -8,6 +8,7 @@ class Activity
     public $activity_type;
     public $proposal_time; // NOTE 15 days = 15 * 24 * 60 * 60 seconds
     public $proposed_by;
+    public $vote_count;
 }
 
 function arrToAct($actArray)
@@ -20,6 +21,7 @@ function arrToAct($actArray)
     $act->activity_type = $actArray["activity_type"];
     $act->proposal_time = $actArray["proposal_time"];
     $act->proposed_by = $actArray["proposed_by"];
+    $act->vote_count = $actArray["vote_count"];
 
     return $act;
 }

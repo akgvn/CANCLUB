@@ -12,6 +12,7 @@ It is an easy-to-use, web-based application through which club members can propo
     - [x] edit to add department_id column
     - [x] edit to add is_prez column
   - [x] "activities" table
+    - [x] add "vote_count" column to find trends easily
   - [x] "comments" table
   - [x] "votes" table
   - [x] "departments" table (if added, edit "users" to add department!)
@@ -26,13 +27,17 @@ It is an easy-to-use, web-based application through which club members can propo
     - [x] List departments using PHP (foreach) / MySQL
   - [x] Username
   - [x] Password
-- [ ] Add Photo to Register page
+- [x] Add Photo to Register page
 - [x] Login Page
-- [ ] Main Activity "Wall" page
+- [x] Main Activity "Wall" page
 - [x] Propose Activity
 - [ ] Individual Activity page for each activity with voting functionality
-- [ ] Comment Function for Voting Page
+  - [x] Individual page
+  - [ ] Voting
+  - [ ] Comment Function for Voting Page
 - [ ] Club member list page for Club Presidents with option to delete members.
 - [ ] Trending Activity Proposals Page
 - [ ] Profile Page for each user so that they can update their own info.
+  - [x] Profile page
+  - [ ] Update info
 - [ ] Write Project Report

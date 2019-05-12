@@ -184,16 +184,62 @@ class DB_Middleman
         }
     }
 
+    public function getActType($actid)
+    {
+        try {
+            $stmt = $this->db_conn->prepare("SELECT type_name FROM activity_types WHERE type_id=$actid");
+            $stmt->execute();
+
+            $types = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $type = $types["type_name"];
+
+            return $type;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getDeptName($deptid)
+    {
+        try {
+            $stmt = $this->db_conn->prepare("SELECT dept_name FROM departments WHERE dept_id=$deptid");
+            $stmt->execute();
+
+            $types = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $type = $types["dept_name"];
+
+            return $type;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function getActivitiesInOrder()
     {
         try {
-            $stmt = $this->db_conn->prepare("SELECT activity_id, activity_title, activity_info, activity_type, proposal_time, proposed_by
+            $stmt = $this->db_conn->prepare("SELECT activity_id, activity_title, activity_info, activity_type, proposal_time, proposed_by, vote_count
             FROM activities ORDER BY proposal_time DESC");
             $stmt->execute();
 
             $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $activities;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function getActivityByID($act_id)
+    {
+        try {
+            $stmt = $this->db_conn->prepare("SELECT activity_id, activity_title, activity_info, activity_type, proposal_time, proposed_by, vote_count
+            FROM activities WHERE activity_id=$act_id");
+            $stmt->execute();
+
+            $act = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $act;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

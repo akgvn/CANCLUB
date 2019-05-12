@@ -48,11 +48,11 @@ body {
 
 <body class="text-center">
 
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+<nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="index.php">CANCLUB</a>
    
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+    <div class="d-flex justify-content-start" id="navbarNav">
+        <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="stream.php">Activities</a>
           </li>
