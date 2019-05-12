@@ -42,7 +42,7 @@
 
 	<body style="padding-top: 40px;padding-bottom: 40px;width: 100%;max-width: 35%;padding: 15px;margin: auto;position: relative;box-sizing: border-box;height: auto;padding: 10px;font-size: 16px;">
 		<form method = "post">
-			<h1>Sign in to Code Arena</h1>
+			<h1>Sign in to CANCLUB</h1>
 			<label> Username: </label> <input required class="form-control" name = "user"> </input> <br> 	
 			<label> Password: </label> <input required class="form-control" name = "pass" type = "password"> </input>
 			<br>	

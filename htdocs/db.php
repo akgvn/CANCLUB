@@ -334,6 +334,26 @@ class DB_Middleman
             echo $e->getMessage();
         }
     }
+
+    public function getUserList()
+    {
+        try
+        {
+            $stmt = $this->db_conn->prepare("SELECT id, username, fname, lname
+            FROM users");
+
+            $stmt->bindparam(":uid", $user_id);
+            $stmt->execute();
+
+            $userRow = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $userRow;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return false;
+    }
+
 }
 
 $db = new DB_Middleman();

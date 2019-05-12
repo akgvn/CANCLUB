@@ -66,7 +66,7 @@ body {
 if($current_user->president) {
     echo "
     <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"listusers.php\">All Users</a>
+        <a class=\"nav-link text-light\" href=\"listusers.php\">All Users</a>
     </li>
     ";
 }

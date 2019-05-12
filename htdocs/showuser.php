@@ -9,7 +9,7 @@ if (!isset($_GET["id"])) {
 
 $canEdit = 0;
 
-if($current_user->uid == $_GET["id"]) {
+if ($current_user->uid == $_GET["id"]) {
     $canEdit = 1;
 }
 
@@ -35,6 +35,10 @@ echo "
     <li class='list-group-item'><strong>eMail:</strong> $user->email</li>
     <li class='list-group-item'><strong>Department:</strong> $deptn </li>
   </ul>
+";
+
+if ($canEdit) {
+    echo "
   <div class='card-body'>
     <form method='POST' action='edituser.php'>
       <input hidden id='uid' name='uid' value='$user->uid'/>
@@ -42,6 +46,9 @@ echo "
       <button type='submit' class='btn btn-outline-danger'>Edit Info</button>
     </form>
   </div>
+";
+}
+
+echo "
 </div>
 ";
-?>

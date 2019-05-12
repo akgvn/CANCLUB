@@ -11,12 +11,23 @@ class User
     public $dept;
     public $birth;
     public $president = 0;
+}
 
-    public function update()
-    {
-        // TODO If this user is in the db, updates data in db. Otherwise inserts new data to db.
-    }
+function arrToUser($userArray)
+{
+    $user = new User;
 
+    $user->uid = $userArray["id"];
+    $user->email = $userArray["email"];
+    $user->uname = $userArray["username"];
+    $user->fname = $userArray["fname"];
+    $user->lname = $userArray["lname"];
+    $user->pass = $userArray["password"];
+    $user->dept = $userArray["dept_id"];
+    $user->birth = $userArray["birthdate"];
+    $user->president = $userArray["has_president_rights"];
+
+    return $user;
 }
 
 class Vote
@@ -52,5 +63,3 @@ function arrToAct($actArray)
 
     return $act;
 }
-
-?>
