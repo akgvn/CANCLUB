@@ -1,9 +1,8 @@
 <?php
 
-require_once "header.php";
+
 require_once "db.php";
-require_once "Activity.php";
-require_once "User.php";
+require_once "dataclasses.php";
 
 session_start();
 
@@ -57,7 +56,7 @@ body {
             <a class="nav-link" href="stream.php">Activities</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="trends.php">Trend Activities</a>
+            <a class="nav-link" href="stream.php?trending=1">Trend Activities</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="proposeactivity.php">Propose Activity</a>

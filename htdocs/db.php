@@ -257,6 +257,22 @@ class DB_Middleman
             echo $e->getMessage();
         }
     }
+
+    public function getTrending()
+    {
+        try {
+            $stmt = $this->db_conn->prepare("SELECT activity_id, activity_title, activity_info, activity_type, proposal_time, proposed_by, vote_count
+            FROM activities ORDER BY vote_count DESC LIMIT 5");
+            $stmt->execute();
+
+            $activities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $activities;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function getActivityByID($act_id)
     {
         try {

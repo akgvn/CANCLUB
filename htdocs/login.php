@@ -2,7 +2,7 @@
 	session_start();
 
 	require_once "db.php";
-	require_once "User.php";
+	require_once "dataclasses.php";
 
 	if (isset($_SESSION["user"])) {
 		header("Location: index.php");

@@ -8,8 +8,11 @@ require_once "header.php";
 
 <?php
 
-$allProposals = $db->getActivitiesInOrder(); // TODO use this to list all proposals.
-
+if (isset($_GET["trending"])) {
+    $allProposals = $db->getTrending();
+} else {
+    $allProposals = $db->getActivitiesInOrder();
+}
 // print_r($allProposals);
 
 foreach ($allProposals as $p) {

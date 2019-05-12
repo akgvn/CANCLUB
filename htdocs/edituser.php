@@ -3,7 +3,7 @@
 session_start();
 
 require_once "db.php";
-require_once "User.php";
+require_once "dataclasses.php";
 
 if(!isset($_POST["uid"])) {
     header("Location: index.php");

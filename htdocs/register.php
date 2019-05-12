@@ -5,7 +5,7 @@
 session_start();
 
 require_once "db.php";
-require_once "User.php";
+require_once "dataclasses.php";
 
 // If a user is already logged in, redirect to index.php.
 if (isset($_SESSION["user"])) {
