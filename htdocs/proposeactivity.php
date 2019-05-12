@@ -6,18 +6,16 @@ if (isset($_POST["title"])) {
     $a_data = new Activity;
     $user_data = $_SESSION["user"];
 
-    print_r($_POST); // FIXME delete this line later
-
     $a_data->activity_title = $_POST["title"];
     $a_data->activity_info = $_POST["info"];
     $a_data->activity_type = $_POST["type"];
 
-    $a_data->activity_id = ""; // FIXME is not needed?
+    $a_data->activity_id = "";
     $a_data->proposal_time = date("Y-m-d H:i:s");
     $a_data->proposed_by = $user_data->uid;
 
     if ($db->proposeActivity($a_data)) {
-        // TODO Print proposed message here!
+        header("Location: index.php");
     } else {
         // TODO Print not proposed message here!
     }

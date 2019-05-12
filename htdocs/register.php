@@ -1,7 +1,5 @@
 <?php
 
-// TODO post for change data
-
 session_start();
 
 require_once "db.php";
@@ -28,7 +26,6 @@ if (isset($_POST["user"])) {
 
     if ($db->registerUser($u_data)) {
         header("Location: index.php");
-        // TODO Print registered message here!
     } else {
         // TODO Print not registered message here!
     }

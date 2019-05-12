@@ -2,9 +2,17 @@
 
 require_once "header.php";
 
-if(!$current_user->president) {
+if (!$current_user->president) {
     echo "Restricted access!";
     exit;
+}
+
+if (isset($_GET["delete"])) {
+    if ($db->deleteUser($_GET["delete"])) {
+        header("Location: listusers.php");
+    } else {
+        echo "<br>Couldn't delete user.";
+    }
 }
 
 echo "
@@ -22,6 +30,7 @@ foreach ($users as $u) {
     echo "
     <li class='list-group-item'>
     $u->uname: <a href='showuser.php?id=$u->uid'>$u->fname $u->lname</a>
+    <a href='listusers.php?delete=$u->uid'>(Delete)</a>
     </li>
     ";
 }
@@ -30,4 +39,3 @@ echo "
 </ul>
 </div>
 ";
-?>

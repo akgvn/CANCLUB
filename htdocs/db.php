@@ -31,8 +31,6 @@ class DB_Middleman
 {
     private $db_conn;
 
-    // TODO
-
     public function __construct()
     {
         $database = new DB_Connector();
@@ -145,6 +143,22 @@ class DB_Middleman
             $user_data->president = $userRow["has_president_rights"];
 
             return $user_data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+        return false;
+    }
+
+    public function deleteUser($user_id)
+    {
+        try
+        {
+            $stmt = $this->db_conn->prepare("DELETE FROM users WHERE users.id = :uid");
+
+            $stmt->bindparam(":uid", $user_id);
+            $stmt->execute();
+
+            return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }

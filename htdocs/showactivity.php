@@ -11,6 +11,17 @@ if (!isset($_GET["id"])) {
 
 $act = $db->getActivityByID($_GET["id"]);
 $act = arrToAct($act);
+
+// NOTE 15 days = 15 * 24 * 60 * 60 seconds
+
+$expired = strtotime($act->proposal_time) + 15*24*60*60;
+
+if(time() > $expired) {
+  $expired = true;
+} else {
+  $expired = false;
+}
+
 $proposer = $db->getUserData($act->proposed_by);
 $type = $act->activity_type;
 $type = $db->getActType($type);
@@ -42,7 +53,10 @@ echo "
   <li class='list-group-item'>
 ";
 
-if (!$voted) {
+
+if ($expired) {
+  echo "15 days passed since this proposal. Votes: $act->vote_count";
+} else if (!$voted) {
     echo "<a href='showactivity.php?id=$act->activity_id&value=1' class='btn btn-primary'>Approve</a>
 <a href='showactivity.php?id=$act->activity_id&value=-1' class='btn btn-primary'>Disapprove</a> ";
 } else {

@@ -37,9 +37,9 @@ It is an easy-to-use, web-based application through which club members can propo
   - [ ] Comment Function for Voting Page
     - [ ] Add comment
     - [ ] List comments
-- [ ] Club member list page for Club Presidents with option to delete members.
+- [X] Club member list page for Club Presidents with option to delete members.
   - [x] The list
-  - [ ] Delete function
+  - [X] Delete function
 - [x] Trending Activity Proposals Page
 - [x] Profile Page for each user so that they can update their own info.
   - [x] Profile page

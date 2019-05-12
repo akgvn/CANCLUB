@@ -44,7 +44,7 @@ class Activity
     public $activity_title;
     public $activity_info;
     public $activity_type;
-    public $proposal_time; // NOTE 15 days = 15 * 24 * 60 * 60 seconds
+    public $proposal_time;
     public $proposed_by;
     public $vote_count;
 }
