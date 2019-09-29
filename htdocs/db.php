@@ -9,7 +9,7 @@ class DB_Connector
     private $host = "localhost";
     private $db_name = "project_canclub";
     private $username = "root";
-    private $password = "study4moar";
+    private $password = "password";
 
     public function dbConnection()
     {
